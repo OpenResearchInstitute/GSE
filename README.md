@@ -1,7 +1,14 @@
 # GSE
 DVB Generic Stream Encapsulation implementation for amateur radio deployment. 
 
-The pdf GSE_block_diagram is pages 19-22 of the GSE Implementation Guidelines. The classes in this GSE packet creation Python script are modeled after the blocks in the block diagram. 
+The two documents most useful for completing this code are:
+Digital Video Broadcasting (DVB); Generic Stream Encapsulation (GSE) Protocol
+Digital Video Broadcasting (DVB); Generic Stream Encapsulation (GSE) implementation guidelines
+
+And anything else that helps, of course.
+
+The pdf GSE_block_diagram in this repository is pages 19-22 of the GSE Implementation Guidelines. 
+The classes in this GSE packet creation Python script are modeled after the blocks in the block diagram. 
 
 The idea here is to write an implementation of GSE that will allow modeling and experimentation for Phase 4 Ground radios. 
 
