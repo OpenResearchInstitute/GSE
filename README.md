@@ -2,7 +2,9 @@
 DVB Generic Stream Encapsulation implementation for amateur radio deployment. 
 
 The two documents most useful for completing this code are:
+
 Digital Video Broadcasting (DVB); Generic Stream Encapsulation (GSE) Protocol
+
 Digital Video Broadcasting (DVB); Generic Stream Encapsulation (GSE) implementation guidelines
 
 And anything else that helps, of course.
