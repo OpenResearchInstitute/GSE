@@ -30,12 +30,14 @@ from numpy import matrix
 
 #Baseband frame information
 #should *this* be an object?
-#N1 is the number of bytes until the end of the Base Band frame.
+#N1 is the number of bytes until the end of the Base Band Frame. 
+#We know how long a Base Band Frame is, so start with that number
+#and count down. The current count goes in N1. 
 N1 = 10
 
 
 #if start indicator == 0 and end indicator == 0 and label type indicator == 0
-# then there are four padding bits, and padding bytes?
+# then there are four padding bits, and padding bytes? Confused. 
 
 
 #Protocol Data Units are the things we want to encapsulate
@@ -44,7 +46,7 @@ N1 = 10
 #both hemispheres of our derrieres with our hands
 
 #you still need a copy of the GSE standard in front of you to make much sense of this.
-#there is some documentation of the fields included but it's not complete. 
+#there is some documentation of the fields included in this code but it's a brief reference. 
 
 default_start = '0b1'
 #start indicator
