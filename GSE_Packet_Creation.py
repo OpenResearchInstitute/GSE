@@ -141,7 +141,7 @@ else:
 
 
 zero_prefix = '0b00000'
-H_LEN = '0b111'
+H_LEN = '0b001'
 #001 optional extension header length of 2 bytes
 #010 optional extension header length of 4 bytes
 #011 optional extension header length of 6 bytes
@@ -327,6 +327,9 @@ class EPU_manager:
 		print "Dummy frame set here?"
 	def produce_BBFRAME(self):
 		print "inside produce_BBFRAME method"
+
+
+
 	def randomize_PLFRAME(self):
 		print "inside randomize_PLFRAME method"
 		#Prior to modulation, each PLFRAME, excluding the PLHEADER, shall be randomized 
@@ -344,7 +347,7 @@ class EPU_manager:
 		print "inside produce_PLHEADER method"
 		
 		#* SOF (26 symbols), identifying the Start of Frame.
-		#SOF shall correspond to the sequence 18D2E82HEX 
+		#SOF shall correspond to the sequence 18D2E82 HEX 
 		#(01-1000-....-0010 in binary notation, the left-side bit being the MSB of the PLHEADER).
 		SOF = BitArray('0b 01 1000 1101 0010 1110 1000 0010')
 		
