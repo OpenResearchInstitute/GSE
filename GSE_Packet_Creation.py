@@ -114,19 +114,19 @@ default_protocol_type = '0b 1000 0110 1101 1101'
 
 #default_label presence and length depends on the label type
 if default_label_type == '0b00':
-	print "label type is 00 which is a six byte label"
+	print("label type is 00 which is a six byte label")
 	default_label = '0b101011010101010110101101010101011010110101010101'
 elif default_label_type == '0b01':
-	print "label type is 01 which is a three byte label"
+	print("label type is 01 which is a three byte label")
 	default_label = '0b101011010101010101010101'
 elif default_label_type == '0b10':
-	print "label type is 10 which is broadcast."
+	print("label type is 10 which is broadcast.")
 	default_label = None
 elif default_label_type == '0b11':
-	print "label type is 11 which is reuse last label."
+	print("label type is 11 which is reuse last label.")
 	default_label = None
 else:
-	print "label type was unrecognized."
+	print("label type was unrecognized.")
 	default_label = None
 
 
@@ -168,11 +168,11 @@ default_extension_header_1 = zero_prefix+H_LEN+H_TYPE
 class GSE:
 	def __init__(self):
 		start = BitArray(default_start)
-		print "start is ", start
+		print("start is ", start)
 		stop = BitArray(default_stop)
-		print "stop is ", stop
+		print("stop is ", stop)
 		label_type = BitArray(default_label_type)
-		print "label type is", label_type
+		print("label type is", label_type)
 
 
 
@@ -186,7 +186,7 @@ class GSE:
 
 		
 		if start == '0b0' and stop == '0b0' and label_type == '0b00':
-			print "padding condition has been met"
+			print("padding condition has been met")
 
 #N1 is the number of bytes until the end of the Base Band frame.
 #how do we get N1? Keep track of it with calculations?
@@ -200,21 +200,21 @@ class GSE:
 		
 		if start == '0b0' and stop == '0b0':
 			fragment_ID = BitArray(default_fragment_ID)
-			print "fragment ID condition has been met and fragment ID value is", fragment_ID
+			print("fragment ID condition has been met and fragment ID value is", fragment_ID)
 		
 		if start == '0b1' and stop == '0b0':
 			total_length = BitArray(default_total_length)
-			print "total length field condition has been met and total length value is", total_length
+			print("total length field condition has been met and total length value is", total_length)
 		
 		if start == '0b1':
 			protocol_type = BitArray(default_protocol_type)
-			print "protocol type field condition has been met and protocol type value is", protocol_type
+			print("protocol type field condition has been met and protocol type value is", protocol_type)
 			if label_type == '0b00':
 				label = BitArray(default_label)
-				print "six byte label condition has been met and the label is", label
+				print("six byte label condition has been met and the label is", label)
 			elif label_type == '0b01':
 				label = BitArray(default_label)
-				print "three byte label condition has been met and the label is", label
+				print("three byte label condition has been met and the label is", label)
 
 
 		fixed_header = start+stop+label_type+GSE_length
@@ -324,14 +324,14 @@ class Priority_scheduler:
 
 class EPU_manager:
 	def __init__(self):
-		print "Dummy frame set here?"
+		print("Dummy frame set here?")
 	def produce_BBFRAME(self):
-		print "inside produce_BBFRAME method"
+		print("inside produce_BBFRAME method")
 
 
 
 	def randomize_PLFRAME(self):
-		print "inside randomize_PLFRAME method"
+		print("inside randomize_PLFRAME method")
 		#Prior to modulation, each PLFRAME, excluding the PLHEADER, shall be randomized 
 		#for energy dispersal by multiplying the (I+jQ) samples by a complex randomization sequence (CI+jCQ):
 
@@ -344,7 +344,7 @@ class EPU_manager:
 		#the modulation and coding scheme of the XFECFRAME, the presence or absence of pilot symbols.
 		#The PLHEADER (one SLOT of 90 symbols) shall be composed of the following fields:
 
-		print "inside produce_PLHEADER method"
+		print("inside produce_PLHEADER method")
 		
 		#* SOF (26 symbols), identifying the Start of Frame.
 		#SOF shall correspond to the sequence 18D2E82 HEX 
@@ -383,26 +383,26 @@ class EPU_manager:
 		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]], dtype=bool)
 		
 		
-		print "the modulation is", XFECFRAME_modulation
-		print "the code rate is", FEC_rate
+		print("the modulation is", XFECFRAME_modulation)
+		print("the code rate is", FEC_rate)
 		
 		MODCOD = matrix([1,1,1,1,1,1], dtype=bool)
 		
 		#print G
 		print MODCOD
 		
-		#print "modcod times modcode transpose is", MODCOD*MODCOD.transpose()
+		#print("modcod times modcode transpose is", MODCOD*MODCOD.transpose())
 		
 		#yes this is pedantic and typed out at length. I had issues.
 		
 		MODCOD = matrix([0,0,0,0,0,0], dtype=bool)
-		print "dummy PLFRAME normal size", (MODCOD*G).astype(int)
+		print("dummy PLFRAME normal size", (MODCOD*G).astype(int))
 		MODCOD = matrix([0,0,0,0,0,1], dtype=bool)
-		print "dummy PLFRAME short size", (MODCOD*G).astype(int)
+		print("dummy PLFRAME short size", (MODCOD*G).astype(int))
 		MODCOD = matrix([0,0,0,0,1,0], dtype=bool)
-		print "QPSK 1/4 PLFRAME normal size", (MODCOD*G).astype(int)
+		print("QPSK 1/4 PLFRAME normal size", (MODCOD*G).astype(int))
 		MODCOD = matrix([0,0,0,0,1,1], dtype=bool)
-		print "QPSK 1/3 PLFRAME short size", (MODCOD*G).astype(int)
+		print("QPSK 1/3 PLFRAME short size", (MODCOD*G).astype(int))
 		MODCOD = matrix([0,0,0,1,0,0], dtype=bool)
 		print (MODCOD*G).astype(int)
 		MODCOD = matrix([0,0,0,1,0,1], dtype=bool)
@@ -529,21 +529,21 @@ class EPU_manager:
 		MODCOD = matrix([0,0,0,0,1,0], dtype=bool)
 		
 		codeword = MODCOD*G
-		#print "the codeword is a boolean matrix", codeword
+		#print("the codeword is a boolean matrix", codeword)
 
 		codeword_int = codeword.astype(int)
-		#print "the codeword as matrix type int", codeword_int
+		#print("the codeword as matrix type int", codeword_int)
 		
 		codeword_int_list = codeword_int.tolist()
-		#print "the codeword is matrix type int but as a list", codeword_int_list
+		#print("the codeword is matrix type int but as a list", codeword_int_list)
 		
 		codeword_bitarray = BitArray()
 		
 		for i in range(0, 32):
-			#print "this is element", (codeword_int_list[0][i])
+			#print("this is element", (codeword_int_list[0][i]))
 			codeword_bitarray.append([codeword_int_list[0][i]])
 		
-		print "codeword_bitarray is", codeword_bitarray
+		print("codeword_bitarray is", codeword_bitarray)
 		
 		
 		#print ((MODCODbin*Gbin).astype(int)).tolist()
@@ -556,27 +556,27 @@ class EPU_manager:
 		#The LSB of the TYPE field shall identify the pilot configurations (see clause 5.5.3) 
 		#(0 = no pilots, 1 = pilots).
 		
-		print "FECFRAME_length is ", FECFRAME_length
-		print "pilots is ", pilots
+		print("FECFRAME_length is ", FECFRAME_length)
+		print("pilots is ", pilots)
 		if FECFRAME_length == 'normal' and pilots == 'no':
 			TYPE = BitArray('0b 00')
-			#print "normal and no"
+			#print("normal and no")
 			return("SOF="+SOF.bin+"MODCOD="+codeword_bitarray.bin+"TYPE="+TYPE.bin)
 		if FECFRAME_length == 'normal' and pilots == 'yes':
 			TYPE = BitArray('0b 01')
-			#print "normal and yes"
+			#print("normal and yes")
 			return("SOF="+SOF.bin+"MODCOD="+codeword_bitarray.bin+"TYPE="+TYPE.bin)
 		if FECFRAME_length == 'short' and pilots == 'no':
 			TYPE = BitArray('0b 10')
-			#print "short and no"
+			#print("short and no")
 			return("SOF="+SOF.bin+"MODCOD="+codeword_bitarray.bin+"TYPE="+TYPE.bin)
 		if FECFRAME_length == 'short' and pilots == 'yes':
 			TYPE = BitArray('0b 11')
-			#print "short and yes"
+			#print("short and yes")
 			return("SOF="+SOF.bin+"MODCOD="+codeword_bitarray.bin+"TYPE="+TYPE.bin)
 		else:
 			TYPE = BitArray(None)
-			#print "didn't match"
+			#print("didn't match")
 			return("SOF="+SOF.bin+"MODCOD="+codeword_bitarray.bin+"TYPE="+"Invalid Result")
 
 
@@ -591,13 +591,13 @@ class EPU_manager:
 		
 		
 a = GSE()
-print "GSE data is", a.data
-print "GSE data size is", a.size
+print("GSE data is", a.data)
+print("GSE data size is", a.size)
 
 
 b = EPU_manager()
 #print b
 b.produce_BBFRAME()
 PLHEADER = b.produce_PLHEADER('short','yes', 'qpsk', '1/4')
-print "The PLHEADER is",PLHEADER
+print("The PLHEADER is",PLHEADER)
 b.randomize_PLFRAME()
