@@ -20,4 +20,4 @@ Most of DVB assumes that you need to authorize a receiver as a legitimate subscr
 
 This implementation then becomes something to test the production implementation vectors against, to ensure that we are doing what we think we're doing. 
 
-[] Updated to Python 3 and presented as a Jupyter Notebook - work started 1 May 2021.
+- [ ] Updated to Python 3 and presented as a Jupyter Notebook - work started 1 May 2021.
