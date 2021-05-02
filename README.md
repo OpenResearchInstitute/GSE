@@ -19,3 +19,5 @@ We suspect that things like address fields and such may have to be "abused" a bi
 Most of DVB assumes that you need to authorize a receiver as a legitimate subscriber. The receiver in amateur radio has different behavior. Authorization and authentication are functions in Phase 4, but the receiver must be able to monitor any traffic it wishes. Therefore, the address field may not necessarily contain the receiver's address, but may contain the transmitter's address. Things like that need to be fully tested. 
 
 This implementation then becomes something to test the production implementation vectors against, to ensure that we are doing what we think we're doing. 
+
+[] Updated to Python 3 and presented as a Jupyter Notebook - work started 1 May 2021.
